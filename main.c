@@ -1,11 +1,33 @@
 int main(int argc, char **argv)
 {
-  // Load config files, if any.
+// the main loop of the Uzh shell.
 
-  // Run command loop.
-  // lsh_loop();
+void Uzh_loop(void)
+{
+  char *line;
+  char **args;
+  int status;
 
-  // Perform any shutdown/cleanup.
+  do {
+    printf("> ");
+    line = Uzh_read_line();
+    args = Uzh_split_line(line);
+    status = Uzh_execute(args);
 
-  return EXIT_SUCCESS;
+    free(line);
+    free(args);
+  } while (status);
+} 
+
+
+return EXIT_SUCCESS;
 }
+
+
+
+
+
+
+
+
+
